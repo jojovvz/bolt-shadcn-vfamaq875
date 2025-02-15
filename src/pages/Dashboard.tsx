@@ -43,12 +43,12 @@ export default function Dashboard() {
         if (!categoriesData || categoriesData.length === 0) {
           console.log('No categories found, using default categories');
           const defaultCategories = [
-            { id: 1, name: 'Introdução', description: 'Módulos introdutórios' },
-            { id: 2, name: 'Redes Sociais', description: 'Marketing em redes sociais' },
-            { id: 3, name: 'Tráfego Pago', description: 'Estratégias de tráfego pago' },
-            { id: 4, name: 'Produtos', description: 'Produtos disponíveis' },
-            { id: 5, name: 'Criação de Conteúdo', description: 'Criação de conteúdo e design' },
-            { id: 6, name: 'Branding', description: 'Desenvolvimento de marca' }
+            { id: 1, name: 'Introdução', description: 'Módulos introdutórios', created_at: new Date().toISOString() },
+            { id: 2, name: 'Redes Sociais', description: 'Marketing em redes sociais', created_at: new Date().toISOString() },
+            { id: 3, name: 'Tráfego Pago', description: 'Estratégias de tráfego pago', created_at: new Date().toISOString() },
+            { id: 4, name: 'Produtos', description: 'Produtos disponíveis', created_at: new Date().toISOString() },
+            { id: 5, name: 'Criação de Conteúdo', description: 'Criação de conteúdo e design', created_at: new Date().toISOString() },
+            { id: 6, name: 'Branding', description: 'Desenvolvimento de marca', created_at: new Date().toISOString() }
           ];
           setCategories(defaultCategories);
           console.log('Set default categories:', defaultCategories);
