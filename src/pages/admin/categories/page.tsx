@@ -112,7 +112,6 @@ interface SortableRowProps {
 
 function SortableRow({ category, onEdit, onDelete }: SortableRowProps) {
   const [modules, setModules] = useState<Module[]>([]);
-  const [loading, setLoading] = useState(true);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -142,8 +141,6 @@ function SortableRow({ category, onEdit, onDelete }: SortableRowProps) {
     } catch (error) {
       console.error('Error fetching modules:', error);
       toast.error('Erro ao carregar módulos');
-    } finally {
-      setLoading(false);
     }
   }
 

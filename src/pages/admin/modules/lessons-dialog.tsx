@@ -117,7 +117,6 @@ export function LessonsDialog({
   onOpenChange,
 }: LessonsDialogProps) {
   const [lessons, setLessons] = useState<Lesson[]>([]);
-  const [loading, setLoading] = useState(true);
   const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
   const [lessonDialogOpen, setLessonDialogOpen] = useState(false);
 
@@ -153,8 +152,6 @@ export function LessonsDialog({
     } catch (error) {
       console.error('Error fetching lessons:', error);
       toast.error('Erro ao carregar aulas');
-    } finally {
-      setLoading(false);
     }
   }
 

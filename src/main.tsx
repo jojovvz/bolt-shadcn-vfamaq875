@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { httpBatchLink } from '@trpc/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { trpc } from './utils/trpc';
+import { trpc } from '@/utils/trpc';
 import App from './App.tsx';
 import './index.css';
 
