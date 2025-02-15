@@ -17,8 +17,17 @@ import UsersPage from '@/pages/admin/users/page';
 import RolesPage from '@/pages/admin/roles/page';
 import { trpc } from './utils/trpc';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { httpBatchLink } from '@trpc/client';
 
 const queryClient = new QueryClient();
+
+const trpcClient = trpc.createClient({
+  links: [
+    httpBatchLink({
+      url: 'http://localhost:3000/api/trpc',
+    }),
+  ],
+});
 
 function App() {
   return (

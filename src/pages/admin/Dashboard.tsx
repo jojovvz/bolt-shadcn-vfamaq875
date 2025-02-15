@@ -1,7 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
-import { Database } from '@/types/supabase';
 import { Link } from 'react-router-dom';
 import { BookOpen, FileText, FolderOpen, Users } from 'lucide-react';
 
@@ -19,7 +18,6 @@ export default function AdminDashboard() {
     lessons: 0,
     users: 0,
   });
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchStats() {
@@ -44,8 +42,6 @@ export default function AdminDashboard() {
         });
       } catch (error) {
         console.error('Error fetching stats:', error);
-      } finally {
-        setLoading(false);
       }
     }
 

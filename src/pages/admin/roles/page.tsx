@@ -26,7 +26,6 @@ type Role = {
 
 export default function RolesPage() {
   const [roles, setRoles] = useState<Role[]>([]);
-  const [loading, setLoading] = useState(true);
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -46,8 +45,6 @@ export default function RolesPage() {
     } catch (error) {
       console.error('Error fetching roles:', error);
       toast.error('Erro ao carregar funções');
-    } finally {
-      setLoading(false);
     }
   }
 

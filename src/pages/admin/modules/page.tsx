@@ -199,7 +199,6 @@ export default function ModulesPage() {
   const [modules, setModules] = useState<Module[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [loading, setLoading] = useState(true);
   const [selectedModule, setSelectedModule] = useState<Module | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [lessonsDialogOpen, setLessonsDialogOpen] = useState(false);
@@ -241,8 +240,6 @@ export default function ModulesPage() {
     } catch (error) {
       console.error('Error fetching data:', error);
       toast.error('Erro ao carregar dados');
-    } finally {
-      setLoading(false);
     }
   }
 
