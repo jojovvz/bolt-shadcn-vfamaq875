@@ -1,0 +1,1 @@
+// Este arquivo será removido pois a funcionalidade foi consolidada no ModuleView.tsx

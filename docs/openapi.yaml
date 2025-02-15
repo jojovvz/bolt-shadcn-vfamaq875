@@ -1,0 +1,207 @@
+openapi: 3.0.0
+info:
+  title: LessonPortal API
+  version: 1.0.0
+  description: API documentation for LessonPortal
+
+servers:
+  - url: https://{project_id}.supabase.co
+    variables:
+      project_id:
+        default: your-project-id
+        description: Supabase Project ID
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    Profile:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        full_name:
+          type: string
+        avatar_url:
+          type: string
+          format: uri
+        role:
+          type: string
+          enum: [member, admin, support]
+        created_at:
+          type: string
+          format: date-time
+
+    Module:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        category_id:
+          type: integer
+        order_index:
+          type: integer
+        cover_url:
+          type: string
+          format: uri
+        status:
+          type: string
+          enum: [draft, published, archived]
+
+    Lesson:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        module_id:
+          type: integer
+        youtube_url:
+          type: string
+          format: uri
+        order_index:
+          type: integer
+
+security:
+  - bearerAuth: []
+
+paths:
+  /auth/v1/token:
+    post:
+      summary: Sign in user
+      tags: [Authentication]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+      responses:
+        200:
+          description: Successful authentication
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+                  expires_in:
+                    type: integer
+                  refresh_token:
+                    type: string
+
+  /rest/v1/profiles:
+    get:
+      summary: Get user profile
+      tags: [Profiles]
+      parameters:
+        - in: query
+          name: id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: User ID
+      responses:
+        200:
+          description: Profile found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+
+    patch:
+      summary: Update user profile
+      tags: [Profiles]
+      parameters:
+        - in: query
+          name: id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: User ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                full_name:
+                  type: string
+                avatar_url:
+                  type: string
+                  format: uri
+      responses:
+        200:
+          description: Profile updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+
+  /rest/v1/modules:
+    get:
+      summary: List modules
+      tags: [Modules]
+      parameters:
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum: [draft, published, archived]
+          description: Filter by status
+      responses:
+        200:
+          description: List of modules
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Module'
+
+  /rest/v1/lessons:
+    get:
+      summary: Get lessons
+      tags: [Lessons]
+      parameters:
+        - in: query
+          name: module_id
+          schema:
+            type: integer
+          required: true
+          description: Module ID
+      responses:
+        200:
+          description: List of lessons
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Lesson'
