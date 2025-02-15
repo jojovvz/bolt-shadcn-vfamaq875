@@ -24,7 +24,6 @@ type Profile = Database['public']['Tables']['profiles']['Row'];
 
 export default function UsersPage() {
   const [users, setUsers] = useState<Profile[]>([]);
-  const [loading, setLoading] = useState(true);
   const [selectedUser, setSelectedUser] = useState<Profile | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [importDialogOpen, setImportDialogOpen] = useState(false);
@@ -50,8 +49,6 @@ export default function UsersPage() {
     } catch (error) {
       console.error('Error fetching users:', error);
       toast.error('Erro ao carregar usuários');
-    } finally {
-      setLoading(false);
     }
   }
 

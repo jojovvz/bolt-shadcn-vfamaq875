@@ -1,7 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
-import { Database } from '@/types/supabase';
 import { Link } from 'react-router-dom';
 import { BookOpen, FileText, FolderOpen, Users } from 'lucide-react';
 

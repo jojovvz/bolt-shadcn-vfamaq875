@@ -29,7 +29,6 @@ export default function LessonsPage() {
   const [lessons, setLessons] = useState<Lesson[]>([]);
   const [modules, setModules] = useState<Module[]>([]);
   const [selectedModule, setSelectedModule] = useState<string>('all');
-  const [loading, setLoading] = useState(true);
   const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -60,8 +59,6 @@ export default function LessonsPage() {
     } catch (error) {
       console.error('Error fetching data:', error);
       toast.error('Erro ao carregar dados');
-    } finally {
-      setLoading(false);
     }
   }
 

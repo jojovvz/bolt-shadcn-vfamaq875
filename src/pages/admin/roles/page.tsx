@@ -26,7 +26,6 @@ type Role = {
 
 export default function RolesPage() {
   const [roles, setRoles] = useState<Role[]>([]);
-  const [loading, setLoading] = useState(true);
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
 
